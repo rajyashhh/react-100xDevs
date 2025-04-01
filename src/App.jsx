@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { PostComponent } from "./Post";
 function App() {
   
@@ -10,9 +11,12 @@ function App() {
   time={post.time}
   image={post.image}
   description={post.description}/>)
+  
 
+  const [count, setCount] = useState(0);
   function addPost(){
-    setPosts([...posts,{
+    setCount(currentVal => currentVal + 1);
+    setPosts(posts => [...posts,{
       name: "Yash",
       subtitle: "12M followers",
       time: "5m ago",
@@ -20,10 +24,17 @@ function App() {
       description : "Pleasure to onboard you for our next upcoming events!"
     }])
   }
+  useEffect(function(){
+
+    
+  },[])
+  
   return (
+    
     <div style={{background: "#dfe6e9", height:"100vh"}}>
-      
+      <div>{tabComponents()}</div>
       <button onClick={addPost}>Add Post</button>
+      <div style={{backgroundColor: "red", width: "20px", height: "20px", borderRadius: "50%", paddingLeft:"8px", margin: "5px"}}>{count}</div>
       <div style={{display: "flex", justifyContent: "center"}}>
         <div>
         <div>
@@ -38,6 +49,45 @@ function App() {
       </div>
   )
     
+  
+function tabComponents(){
+  const [tab, setTab]=useState({});
+  const [currentTab, setCurrentTab]=useState(1);
+  const [loading, setLoading]=useState(true);
+  useEffect( function(){
+    setLoading(true);
+    fetch("https://jsonplaceholder.typicode.com/todos/" + currentTab)
+    .then(async res => {
+      const json = await res.json();
+      setTab(json);
+      setLoading(false);
+    })
+    
+  }, [currentTab])
+ 
+  return(
+    <div>
+      <button onClick={function(){
+        setCurrentTab(1)
+      }} style={{color: currentTab==1 ? "red" : "black" }}>Task 1</button>
+      <button onClick={function(){
+        setCurrentTab(2)
+      }} style={{color: currentTab==2 ? "red" : "black" }}>Task 2</button>
+      <button onClick={function(){
+        setCurrentTab(3)
+      }} style={{color: currentTab==3 ? "red" : "black" }}>Task 3</button>
+      <button onClick={function(){
+        setCurrentTab(4)
+      }} style={{color: currentTab==4 ? "red" : "black" }}>Task 4</button>
+      <button onClick={function(){
+        setCurrentTab(5)
+      }} style={{color: currentTab==5 ? "red" : "black" }}>Task 5</button>
+    <br/>
+    <div>{loading ? "Loading..." : tab.title}</div>
+    </div>
+  
+  )
+}
 }
 
 
