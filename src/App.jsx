@@ -83,7 +83,7 @@ function tabComponents(){
         setCurrentTab(5)
       }} style={{color: currentTab==5 ? "red" : "black" }}>Task 5</button>
     <br/>
-    <div>{loading ? "Loading..." : tab.title}</div>
+    <div>{loading ? "Loading..." : "Task no. "+tab.id +" has title as "+tab.title}</div>
     </div>
   
   )
@@ -106,7 +106,9 @@ const ToggleMessage = () => {
 
 
 
-
+function Card(){
+  return 
+}
 
 
 
