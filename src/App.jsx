@@ -29,10 +29,13 @@ function App() {
     
   },[])
   
+  
+
+
   return (
     
     <div style={{background: "#dfe6e9", height:"100vh"}}>
-      <div>{tabComponents()}</div>
+      <div><TabComponents/></div>
       <button onClick={addPost}>Add Post</button>
       <div style={{backgroundColor: "red", width: "20px", height: "20px", borderRadius: "50%", paddingLeft:"8px", margin: "5px"}}>{count}</div>
       <div style={{display: "flex", justifyContent: "center"}}>
@@ -41,16 +44,52 @@ function App() {
         {postComponents}
         </div>
        
-        </div>
+        
         
       </div>
-      
-
+      <div>
+        <Card>
+        "Hi There!"
+        </Card>
+        <Card>
+        <div style={{backgroundColor: "yellow"}}>
+          <input type={"text"}></input>
+        </div>
+        </Card>
       </div>
+      </div>
+      </div>
+      
   )
     
   
-function tabComponents(){
+
+}
+
+
+const ToggleMessage = () => {
+  const [notificationCount, setNotificationCount] = useState(0);
+  function increment(){
+    setNotificationCount(notificationCount + 1);
+  }
+  return(
+    <div>
+      <button onClick={increment}>Increase Count</button>
+      {notificationCount}
+    </div>
+  )
+
+}
+
+
+
+function Card({children}){
+  return <div style={{background: "black", borderRadius: 10, color: "white", padding: "10px"}}>
+    {children}
+  </div>
+}
+
+function TabComponents(){
   const [tab, setTab]=useState({});
   const [currentTab, setCurrentTab]=useState(1);
   const [loading, setLoading]=useState(true);
@@ -88,29 +127,6 @@ function tabComponents(){
   
   )
 }
-}
-
-
-const ToggleMessage = () => {
-  const [notificationCount, setNotificationCount] = useState(0);
-  function increment(){
-    setNotificationCount(notificationCount + 1);
-  }
-  return(
-    <div>
-      <button onClick={increment}>Increase Count</button>
-      {notificationCount}
-    </div>
-  )
-}
-
-
-
-function Card(){
-  return 
-}
-
-
 
 
 
