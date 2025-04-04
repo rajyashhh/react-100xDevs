@@ -57,6 +57,13 @@ function App() {
         </div>
         </Card>
       </div>
+      <div>
+        <Todo key={1} title={"Code 12 hours"} done={false} />
+        <Todo key={2} title={"Have dinner"} done={true} />
+      </div>
+      <div>
+        <Card1/>
+      </div>
       </div>
       </div>
       
@@ -81,13 +88,26 @@ const ToggleMessage = () => {
 
 }
 
-
+function Todo({title, done}){
+  return <div>
+    {title} is {done ? "done" : "not done"}
+  </div>
+}
 
 function Card({children}){
   return <div style={{background: "black", borderRadius: 10, color: "white", padding: "10px"}}>
     {children}
   </div>
 }
+
+function Card1(){
+  return <div style={{background: "red", borderRadius : 20, padding : 20}}>
+    Hi there
+  </div>
+}
+
+
+
 
 function TabComponents(){
   const [tab, setTab]=useState({});
